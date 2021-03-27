@@ -1,0 +1,167 @@
+html {
+  font-family: "Ubuntu", monospace;
+}
+
+body {
+	margin: auto ;
+	color: #d3cab7 ;
+  font-size: 15px ;
+	background: #282828;
+	padding: 20px ;
+  max-width: 70% ;
+  border: 1px solid #ea6962;
+  border-style: dashed;
+}
+
+
+h1,h2,h3,h4 { text-align: center ; }
+
+h1 { color: lightblue ; }
+
+h2:nth-of-type(odd) { color: #e78a4e ; }
+
+h2:nth-of-type(even) { color: #ea6962 ; }
+
+body h2 {
+    border: 1px solid #d3cab7;
+}
+
+h3 { color: tomato ; }
+
+h4 { color: deepskyblue ; }
+
+a { color: #e78a4e ;}
+
+a:hover { color: #ea6962 ;}
+
+iframe {
+    width: auto;
+    height: auto;
+    display: block;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.figure {
+    padding: 10px; 
+    width:auto;
+    height:auto;
+    float: left; 
+    margin: auto; 
+    text-align: center;
+    font-style: oblique;
+}
+
+.dropbtn {
+  background-color: #d8a657;
+  color: #282828;
+  padding: 15px;
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+  width:100px;
+  height:70px;
+  transition: width 1s, height 2s;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #282828;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: #d3cab7;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #d8a657;
+    color: #282828;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #d8a657;
+}
+
+.dropbtn:hover {
+    transform: rotate(180deg);
+    width:120px;
+    height:90px;
+}
+
+.fx {
+ display:flex;
+ flex-direction: row;
+ flex-wrap: wrap;
+ width:auto;
+ height:auto;
+ justify-content: space-evenly;
+ padding:0;
+ list-style-type:none;
+}
+
+.fxitem {
+ align-self:center;
+ width:auto;
+ height:auto;
+ background-color:#282828;
+ } 
+
+ .pimage {
+     width: 75%;
+     height: auto;
+     background-color: #ffffff;
+     margin: auto;
+}
+
+#mail {
+
+}
+
+#git {
+
+}
+
+#mail::before {
+  content: "Email: ";
+}
+
+#git::before {
+  content: "Git handle: ";
+}
+
+
+#svsealanim {
+  width: auto;
+  height: auto;
+  position: relative;
+  animation-name: svseal;
+  animation-duration: 4s;
+}
+
+@keyframes svseal {
+  0%   { left:0%; top:auto;}
+  50%  { left:45%; top:auto;filter: contrast(150%) brightness(150%); }
+  100% { left:0%; top:auto; filter: contrast(50%) brightness(50%);
+  }
+}
