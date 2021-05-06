@@ -4,6 +4,8 @@
         <link rel="stylesheet" type="text/css" href="style.css">
         <title>Arthouse film</title>
         <meta charset="utf-8">
+
+        <script type="text/javascript" src="js/source.js"></script>
     </head>
 
     <body>
@@ -55,6 +57,63 @@
 
     <hr>
 
+
+<form class="quizbox" name="tark_form" onsubmit="return validateForm1()">
+  Tarkovsky death year: <input type="text" name="tark_death">
+  <input type="submit" value="Submit">
+</form>
+
+<form class="quizbox" name="dreyer_form" onsubmit="return validateForm2()">
+  Dreyer birth year: <input type="text" name="dreyer_birth">
+  <input type="submit" value="Submit">
+</form>
+
+<form class="quizbox" name="tfilm_form" onsubmit="return validate_tfilm()">
+  Write the name of a film by Tarkovsky: <input type="text" name="filmname">
+  <input type="submit" value="Submit">
+</form>
+
+<form class="quizbox" name="dfilm_form" onsubmit="return validate_dfilm()">
+  Write the name of a film by Dreyer: <input type="text" name="filmname">
+  <input type="submit" value="Submit">
+</form>
+
+<p class="quizbox"><button onclick="delete_quiz_boxes()">Close quiz answer boxes</button></p>
+
+
+<label for="myCheck">Show quiz answers:</label> 
+<input type="checkbox" id="answerscheck" onclick="myFunction()">
+
+<p class="the_answers" style="display:none">1. Tarkovsky died in 1986.</p>
+
+<p class="the_answers" style="display:none">2. Dreyer was born in 1889.</p>
+
+<p class="the_answers" style="display:none">3. Tarkovsky directed: Stalker.</p>
+
+<p class="the_answers" style="display:none">4. Dreyer directed: The Passion of Joan of Arc.</p>
+
+
+<script>
+function myFunction() {
+        var checkBox = document.getElementById("answerscheck");
+        var answers = document.getElementsByClassName("the_answers");
+        if (checkBox.checked == true)
+        {
+                for(var i = 0; i < answers.length; i++)
+                {
+                        answers[i].style.display = "block";
+                }
+        }
+        else 
+        {
+                for(var i = 0; i < answers.length; i++)
+                {
+                        answers[i].style.display = "none";
+                }
+        }
+}
+</script>
+
     <div>
         <div class="dropdown">
             <button class="dropbtn">Wiki pages</button>
@@ -66,8 +125,18 @@
         </div>
     </div>
 
-    <p id="mail">niculaionut@tutanota.com</p>
-    <p id="git"><a href="https://github.com/niculaionut">niculaionut</a></p>
+
+        <p id="end"><button onclick="get_contact_info()">Show contact info</button></p>
+
+        <p><button onclick="get_body_info()">Print page details</button></p>
+
+
+        <p id="cdate"></p>
+<script>
+var d = new Date();
+document.getElementById("cdate").innerHTML = "Current date: " +
+                                             d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear();
+</script>
 
     </body>
 
