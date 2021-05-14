@@ -1,6 +1,26 @@
+var ctime = setInterval(ctime_func, 1000);
+function ctime_func() {
+        var d = new Date();
+        document.getElementById("cdate").innerHTML = d.toLocaleTimeString();
+}
+
+localStorage.setItem("subcount", 0);
+localStorage.setItem("answers", JSON.stringify([]));
+
 function validateForm1()
 {
         var str = document.forms["tark_form"]["tark_death"].value;
+        var storedans = JSON.parse(localStorage.getItem("answers"));
+
+        console.log("Raspunsurile precedente:")
+        for(var i = 0; i < storedans.length; i++)
+        {
+                console.log(storedans[i]);
+        }
+
+        storedans.push(str);
+        localStorage.setItem("answers", JSON.stringify(storedans));
+
         var reg = new RegExp("^.*1986.*$");
         if (reg.test(str))
         {
@@ -42,6 +62,10 @@ function delete_quiz_boxes()
 
 var contact_shown = 0;
 
+function func_hide(evt) {
+        evt.target.style.visibility = 'hidden';
+}
+
 function get_contact_info()
 {
         if(contact_shown == 0)
@@ -54,7 +78,10 @@ function get_contact_info()
         
                 p1.appendChild(t1);
                 p2.appendChild(t2);
-        
+
+                p1.addEventListener('click', func_hide, false);
+                p2.addEventListener('click', func_hide, false);
+
                 const currentp = document.getElementById("end");
                 document.body.insertBefore(p2, currentp.nextSibling);
                 document.body.insertBefore(p1, currentp.nextSibling);
@@ -95,7 +122,7 @@ function validate_tfilm()
 function validate_dfilm()
 {
         fname = document.forms["dfilm_form"]["filmname"].value;
-        if(tfilms.includes(fname))
+        if(dfilms.includes(fname))
         {
                 alert("Correct. Dreyer directed " + fname.toUpperCase());
         }
@@ -109,6 +136,13 @@ function validate_dfilm()
 var colors = ["yellow", "blue", "white"];
 
 document.addEventListener('keydown', (event) => {
+        var path = window.location.pathname;
+        var page = path.split("/").pop();
+        if(page != "tarkovsky.html")
+        {
+                return false;
+        }
+
   if (event.keyCode == 65) {
           setTimeout(function(){
           document.getElementById("svsealanim").style.border="1px solid " + 
