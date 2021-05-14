@@ -105,3 +105,14 @@ function validate_dfilm()
         }
         return false;
 }
+
+var colors = ["yellow", "blue", "white"];
+
+document.addEventListener('keydown', (event) => {
+  if (event.keyCode == 65) {
+          setTimeout(function(){
+          document.getElementById("svsealanim").style.border="1px solid " + 
+                                                             colors[Math.floor((Math.random() * 3))]},
+                    1000);
+  }
+}, false);
