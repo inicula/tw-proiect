@@ -62,8 +62,8 @@ function delete_quiz_boxes()
 
 var contact_shown = 0;
 
-function func_hide(evt) {
-        evt.target.style.visibility = 'hidden';
+function highlight_contact(evt) {
+        evt.target.style.color = 'red';
 }
 
 function get_contact_info()
@@ -79,8 +79,8 @@ function get_contact_info()
                 p1.appendChild(t1);
                 p2.appendChild(t2);
 
-                p1.addEventListener('click', func_hide, false);
-                p2.addEventListener('click', func_hide, false);
+                p1.addEventListener('click', highlight_contact, false);
+                p2.addEventListener('click', highlight_contact, false);
 
                 const currentp = document.getElementById("end");
                 document.body.insertBefore(p2, currentp.nextSibling);
@@ -90,7 +90,7 @@ function get_contact_info()
         }
 }
 
-function get_body_info()
+function get_p_info()
 {
         let para = document.querySelector('p');
         let cstyle = window.getComputedStyle(para);
