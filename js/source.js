@@ -1,7 +1,12 @@
+var page404d = 0
+
 var ctime = setInterval(ctime_func, 1000);
 function ctime_func() {
-        var d = new Date();
-        document.getElementById("cdate").innerHTML = d.toLocaleTimeString();
+        if(page404d == 0)
+        {
+            var d = new Date();
+            document.getElementById("cdate").innerHTML = d.toLocaleTimeString();
+        }
 }
 
 localStorage.setItem("subcount", 0);
@@ -20,6 +25,15 @@ function validateForm1()
 
         storedans.push(str);
         localStorage.setItem("answers", JSON.stringify(storedans));
+
+        const newresp = {
+                contents: str
+        }
+
+        $.post({
+                url:"http://localhost:3000/formresponses",
+                data: newresp
+        })
 
         var reg = new RegExp("^.*1986.*$");
         if (reg.test(str))
@@ -146,7 +160,61 @@ document.addEventListener('keydown', (event) => {
   if (event.keyCode == 65) {
           setTimeout(function(){
           document.getElementById("svsealanim").style.border="1px solid " + 
-                                                             colors[Math.floor((Math.random() * 3))]},
+                                             colors[Math.floor((Math.random() * 3))]},
                     1000);
   }
 }, false);
+
+function get_prev_responses()
+{
+        var presponses = [];
+
+        $.get({
+                url:"http://localhost:3000/formresponses"
+        })
+        .done((resp)=>{
+                presponses = resp;
+        })
+        .then(()=>{
+                console.log(presponses);
+        })
+}
+
+function try_get() {
+    const thepath = "http://localhost:3000/formresponses/dreyer";
+
+    $.ajax({
+        type: "GET",
+        url: thepath,
+        statusCode: {
+            200: function() {
+                console.log("success");
+            },
+            404: function() {
+                page404d = 1;
+                document.body.innerHTML = "404: FAILED TO ACCESS " + thepath;
+            }
+        }
+    })
+}
+
+function hide_correct_answers() {
+    const hide_c_resp = {
+        contents: "correct answer hidden"
+    }
+
+    $.ajax({
+        type: "PUT",
+        url:"http://localhost:3000?contents=" + "1986",
+        data: hide_c_resp
+    })
+}
+
+function delete_correct_answers() {
+    var cresp = "1986";
+
+    $.ajax({
+        type: "DELETE",
+        url:"http://localhost:3000?contents=" + cresp
+    })
+}
